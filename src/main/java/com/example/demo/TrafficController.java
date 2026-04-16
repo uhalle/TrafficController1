@@ -28,20 +28,20 @@ public class TrafficController {
 		if (paused) {
 			return "Traffic cycle is paused!";
 		}
-		northSouth.setState(LightState.GREEN);
-		eastWest.setState(LightState.RED);
+		getNorthSouth().setState(LightState.GREEN);
+		getEastWest().setState(LightState.RED);
 		validateNoConflict();
 
-		northSouth.setState(LightState.YELLOW);
-		eastWest.setState(LightState.RED);
+		getNorthSouth().setState(LightState.YELLOW);
+		getEastWest().setState(LightState.RED);
 		validateNoConflict();
 
-		northSouth.setState(LightState.RED);
-		eastWest.setState(LightState.GREEN);
+		getNorthSouth().setState(LightState.RED);
+		getEastWest().setState(LightState.GREEN);
 		validateNoConflict();
 
-		eastWest.setState(LightState.YELLOW);
-		northSouth.setState(LightState.RED);
+		getEastWest().setState(LightState.YELLOW);
+		getNorthSouth().setState(LightState.RED);
 		validateNoConflict();
 		return "Cycle executed successfully!";
 	}
@@ -50,17 +50,17 @@ public class TrafficController {
 	public String changeSequence(@RequestParam String sequence) {
 		// Example: "NS_GREEN_EW_RED"
 		if (NS_GREEN_EW_RED.equalsIgnoreCase(sequence)) {
-			northSouth.setState(LightState.GREEN);
-			eastWest.setState(LightState.RED);
+			getNorthSouth().setState(LightState.GREEN);
+			getEastWest().setState(LightState.RED);
 		} else if (NS_RED_EW_GREEN.equalsIgnoreCase(sequence)) {
-			northSouth.setState(LightState.RED);
-			eastWest.setState(LightState.GREEN);
+			getNorthSouth().setState(LightState.RED);
+			getEastWest().setState(LightState.GREEN);
 		} else if (NS_YELLOW_EW_RED.equalsIgnoreCase(sequence)) {
-			northSouth.setState(LightState.YELLOW);
-			eastWest.setState(LightState.RED);
+			getNorthSouth().setState(LightState.YELLOW);
+			getEastWest().setState(LightState.RED);
 		} else if (EW_YELLOW_NS_RED.equalsIgnoreCase(sequence)) {
-			eastWest.setState(LightState.YELLOW);
-			northSouth.setState(LightState.RED);
+			getEastWest().setState(LightState.YELLOW);
+			getNorthSouth().setState(LightState.RED);
 		} else {
 			return "Invalid sequence!";
 		}
@@ -70,7 +70,7 @@ public class TrafficController {
 
 	@PostMapping("/validateConflictingDirections")
 	private void validateNoConflict() {
-		if (northSouth.getState() == LightState.GREEN && eastWest.getState() == LightState.GREEN) {
+		if (getNorthSouth().getState() == LightState.GREEN && getEastWest().getState() == LightState.GREEN) {
 			throw new IllegalStateException("Conflict detected: Both directions cannot be GREEN simultaneously!");
 		}
 	}
