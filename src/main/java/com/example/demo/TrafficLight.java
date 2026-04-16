@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class TrafficLight {
 	
 	public enum LightState {
@@ -22,7 +19,7 @@ public class TrafficLight {
 	 private String direction;
 
 	    public TrafficLight(DIRECTION direction) {
-	        this.setDirection(direction);
+	        this.direction = direction.direction;
 	    }
 	    
 	    public void changeState() {
@@ -40,10 +37,6 @@ public class TrafficLight {
 
 		public String getDirection() {
 			return direction;
-		}
-
-		public void setDirection(DIRECTION direction) {
-			this.direction = direction.direction;
 		}
 
 }

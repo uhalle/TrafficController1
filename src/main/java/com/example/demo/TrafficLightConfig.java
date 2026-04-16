@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TrafficLightConfig {
 
-	 @Bean(name = "NORTH_SOUTH")
+	    @Bean(name = "NORTH_SOUTH")
 	    public TrafficLight northSouthLight() {
 	        return new TrafficLight(DIRECTION.NORTH_SOUTH);
 	    }
