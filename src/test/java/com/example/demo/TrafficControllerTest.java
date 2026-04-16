@@ -34,7 +34,7 @@ class TrafficControllerTest {
     
 
     @Test
-    void testRunCycle_AfterCycle() {
+    void testRunCycle() {
         trafficController.runCycle();
 
         // After cycle, expected states:
@@ -44,16 +44,6 @@ class TrafficControllerTest {
         assertThat(eastWest.getState()).isEqualTo(TrafficLight.LightState.YELLOW);
     }
     
-    @Test
-    void testRunCycle_When_NorthSouthIsGreen_EastWestShouldBeRed() {
-        trafficController.runCycle();
-
-        // After cycle, expected states:
-        // North-South should be RED
-        // East-West should be YELLOW
-        assertThat(northSouth.getState()).isEqualTo(TrafficLight.LightState.RED);
-        assertThat(eastWest.getState()).isEqualTo(TrafficLight.LightState.YELLOW);
-    }
     
     @Test
     void testRunCycle_With_Validation() {
